@@ -1,0 +1,28 @@
+# sensor
+sensor_frame: "depth"
+sensor_scan_frame: "depth_scan"
+sensor_repeat_times: 5
+# [qw, qx, qy, qz]
+sensor_orientation: [1.0, 0.0, 0.0, 0.0]
+
+# filter
+filter_fov_min: -1.047197551
+filter_fov_max: 1.047197551
+filter_fov_num: 80
+filter_distance_min: 0.5
+filter_distance_max: 10.0
+filter_distance_num: 200
+filter_height_min: -1.0
+filter_height_max: 1.5
+
+# threshold
+threshold_delta_height: 0.03
+threshold_interval_height: 0.0
+
+# surround
+surround_distance: 2.0
+surround_constant: 0.375
+surround_factor: 0.025
+
+# flag
+flag_pub_cloud: true
