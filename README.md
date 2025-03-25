@@ -1,4 +1,8 @@
-# hex_free_edge
+# **hex_free_edge**
+
+[English](README.md) | [简体中文](README_CN.md)
+
+---
 
 This repo provides an implementation of livox pointcloud undistortion.
 
@@ -29,9 +33,9 @@ Dong Zhaorui(<847235539@qq.com>)
 | `sensor_scan_frame`         | `std::string`         | 边界scan的坐标系             |
 | `sensor_repeat_times`       | `int`                 | 每个水平区间中scan重复的次数 |
 | `sensor_orientation`        | `std::vector<double>` | Lidar在base_link系下的方向   |
-| `filter_fov_min`        | `double`              | 水平角度最小值               |
-| `filter_fov_max`        | `double`              | 水平角度最大值               |
-| `filter_fov_num`        | `int`                 | 水平区间个数                 |
+| `filter_fov_min`            | `double`              | 水平角度最小值               |
+| `filter_fov_max`            | `double`              | 水平角度最大值               |
+| `filter_fov_num`            | `int`                 | 水平区间个数                 |
 | `filter_distance_min`       | `double`              | 距离最小值                   |
 | `filter_distance_max`       | `double`              | 距离最大值                   |
 | `filter_distance_num`       | `int`                 | 距离区间个数                 |
