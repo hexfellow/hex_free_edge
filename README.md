@@ -1,56 +1,76 @@
 # **hex_free_edge**
 
-[English](README.md) | [简体中文](README_CN.md)
+## **Overview**
+
+This **hex_free_edge** repository provides an implementation to detect the free edge of the obstacle.
+
+### **Maintainer**
+
+**[Dong Zhaorui](https://github.com/IBNBlank)**
+
+### **Supported Platform**
+
+- [x] **x64**
+- [ ] **Jetson Orin Nano**
+- [x] **Jetson Orin NX**
+- [ ] **Jetson AGX Orin**
+- [ ] **Horizon RDK X5**
+
+### **Supported ROS Version**
+
+- [x] **ROS Noetic**
+- [ ] **ROS Humble**
 
 ---
 
-This repo provides an implementation of livox pointcloud undistortion.
+## **Public APIs**
 
-## Maintainer
+### **Publish**
 
-Dong Zhaorui(<847235539@qq.com>)
+| Topic             | Msg Type                  | Description               |
+| ----------------- | ------------------------- | ------------------------- |
+| `/obstacle_scan`  | `sensor_msgs/LaserScan`   | Safe edge of the obstacle |
+| `/obstacle_cloud` | `sensor_msgs/PointCloud2` | Cloud outside of the edge |
 
-## Public APIs
+### **Subscribe**
 
-### Publish
+| Topic          | Msg Type                  | Description        |
+| -------------- | ------------------------- | ------------------ |
+| `/point_cloud` | `sensor_msgs/PointCloud2` | Sensor point cloud |
 
-| Topic             | Msg Type                  | Description      |
-| ----------------- | ------------------------- | ---------------- |
-| `/obstacle_scan`  | `sensor_msgs/LaserScan`   | 安全区域的边界   |
-| `/obstacle_cloud` | `sensor_msgs/PointCloud2` | 安全区域外的点云 |
+### **Parameters**
 
-### Subscribe
+| Name                       | Data Type             | Description                                               |
+| -------------------------- | --------------------- | --------------------------------------------------------- |
+| `filter_height`            | `std::vector<double>` | Filter judgement of height                                |
+| `filter_fov`               | `std::vector<double>` | Filter judgement of fov                                   |
+| `filter_distance`          | `std::vector<double>` | Filter judgement of distance                              |
+| `filter_fov_num`           | `int32`               | Grid number of fov                                        |
+| `filter_distance_num`      | `int32`               | Grid number of distance                                   |
+| `flag_pub_cloud`           | `bool`                | Whether to publish cloud                                  |
+| `obstacle_cloud_num`       | `int32`               | Number of cloud to accumulate                             |
+| `obstacle_change_distance` | `double`              | Obstacle judgement change distance                        |
+| `obstacle_far_range`       | `double`              | Obstacle judgement for delta height in a single grid      |
+| `obstacle_far_gap`         | `double`              | Obstacle judgement for delta height between sorted points |
+| `obstacle_near_constant`   | `double`              | Near constant of obstacle                                 |
+| `obstacle_near_factor`     | `double`              | Near factor of obstacle                                   |
+| `sensor_frame`             | `std::string`         | Point cloud frame                                         |
+| `sensor_scan_frame`        | `std::string`         | Scan frame                                                |
+| `sensor_scan_repeat`       | `int32`               | Scan repeat times                                         |
+| `sensor_orientation`       | `std::vector<double>` | Sensor orientation (qw, qx, qy, qz)                       |
+| `sensor_senser_in_base`    | `std::vector<double>` | Sensor in base (x, y, z, qw, qx, qy, qz)                  |
+| `sensor_lidar_period`      | `double`              | Lidar period                                              |
+| `sensor_odom_period`       | `double`              | Odom period                                               |
 
-| Topic          | Msg Type                  | Description |
-| -------------- | ------------------------- | ----------- |
-| `/point_cloud` | `sensor_msgs/PointCloud2` | 原始点云    |
+---
 
-### Parameters
+## **Getting Started**
 
-| Name                        | Data Type             | Description                  |
-| --------------------------- | --------------------- | ---------------------------- |
-| `sensor_frame`              | `std::string`         | Lidar坐标系                  |
-| `sensor_scan_frame`         | `std::string`         | 边界scan的坐标系             |
-| `sensor_repeat_times`       | `int`                 | 每个水平区间中scan重复的次数 |
-| `sensor_orientation`        | `std::vector<double>` | Lidar在base_link系下的方向   |
-| `filter_fov_min`            | `double`              | 水平角度最小值               |
-| `filter_fov_max`            | `double`              | 水平角度最大值               |
-| `filter_fov_num`            | `int`                 | 水平区间个数                 |
-| `filter_distance_min`       | `double`              | 距离最小值                   |
-| `filter_distance_max`       | `double`              | 距离最大值                   |
-| `filter_distance_num`       | `int`                 | 距离区间个数                 |
-| `filter_height_min`         | `double`              | 点云高度过滤下界             |
-| `filter_height_max`         | `double`              | 点云高度过滤上界             |
-| `threshold_delta_height`    | `double`              | 区间上下限高度判据           |
-| `threshold_interval_height` | `double`              | 区间高度间隔判据             |
-| `surround_distance`         | `double`              | 近距离点云距离判据           |
-| `surround_constant`         | `double`              | 近距离点云高度的负截距       |
-| `surround_factor`           | `double`              | 近距离点云高度的斜率         |
-| `flag_pub_cloud`            | `bool`                | 是否发布`/obstacle_cloud`    |
+### **Dependencies**
 
-## Getting Started
+- **ROS Noetic** or **ROS Humble**
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### **Install**
 
 1. Create a workspace `catkin_ws` and get into the `src`.
 
@@ -62,55 +82,25 @@ These instructions will get you a copy of the project up and running on your loc
 2. Clone this repo.
 
    ```shell
-   git clone git@gitlab.hexmove.cn:IBN_Blank/hex_free_edge.git
+   git clone git@github.com:hexfellow/hex_free_edge.git
    ```
 
-3. Run install script `hex_install.py`.
-
-   ```shell
-   python3 hex_free_edge/tools/hex_install.py
-   ```
-
-4. Go to `catkin_ws` dir and build the repo.
+3. Go to `catkin_ws` directory and build the repo.
 
    ```shell
    cd ../
    catkin_make
    ```
 
-5. Source the `setup.bash` and run the test blow
+4. Source the `setup.bash` and run the test blow
 
    ```shell
    source devel/setup.bash --extend
    ```
 
-### Platforms
+### **Usage**
 
-* [ ] **Jetson Orin NX**
-* [ ] **Jetson Orin Nano**
-* [ ] **Jetson AGX Orin**
-* [ ] **RK3588**
-
-### Prerequisites
-
-What additional things you need to use the software
-
-**Foxglove: (optional)**
-
-```shell
-wget https://get.foxglove.dev/desktop/latest/foxglove-studio-2.4.0-linux-amd64.deb
-sudo apt install ./foxglove-studio-*.deb
-```
-
-### Usage
-
-```shell
-roslaunch hex_free_edge hex_free_edge.launch
-```
-
-## Running the tests
-
-1. For Mid-360
+1. If you are using Livox LiDAR, you can run the following command:
 
    ```shell
    terminal_1:
@@ -121,7 +111,7 @@ roslaunch hex_free_edge hex_free_edge.launch
    $ rosbag play livox.bag --clock
    ```
 
-2. For RS-LiDAR
+2. If you are using RS-LiDAR, you can run the following command:
 
    ```shell
    terminal_1:
@@ -132,7 +122,7 @@ roslaunch hex_free_edge hex_free_edge.launch
    $ rosbag play lidar.bag --clock
    ```
 
-3. For depth camera
+3. If you are using depth camera, you can run the following command:
 
    ```shell
    terminal_1:
@@ -143,6 +133,7 @@ roslaunch hex_free_edge hex_free_edge.launch
    $ rosbag play depth.bag --clock
    ```
 
-## Reminder
+## **Notes**
 
-1. 近距离点云高度判据: `h_ground < surround_factor * distance + surround_constant`
+1. Near judgement: `h_ground < surround_factor * distance + surround_constant`
+2. Far judgement: `delta > obstacle_far_range || gap > obstacle_far_gap`
