@@ -4,6 +4,10 @@
 
 This **hex_free_edge** repository provides an implementation to detect the free edge of the obstacle.
 
+### **License**
+
+This project is licensed under the terms of the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
 ### **Maintainer**
 
 **[Dong Zhaorui](https://github.com/IBNBlank)**
