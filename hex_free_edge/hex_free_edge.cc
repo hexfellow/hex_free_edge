@@ -150,7 +150,7 @@ void HexFreeEdge::MarkObstacle() {
       } else {
         // mark far obstacle
         Eigen::Vector2d metric = EvaluateGrid(index);
-        if (metric[0] > kparameter_obstacle_.far_range &&
+        if (metric[0] > kparameter_obstacle_.far_range ||
             metric[1] > kparameter_obstacle_.far_gap) {
           obstacle_index_[i] = j;
           break;

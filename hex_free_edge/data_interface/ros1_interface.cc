@@ -125,7 +125,7 @@ void DataInterface::ParameterInit() {
   nh_local_ptr_->param<double>("obstacle_far_range",
                                kparameter_obstacle_.far_range, 0.03);
   nh_local_ptr_->param<double>("obstacle_far_gap", kparameter_obstacle_.far_gap,
-                               0.0);
+                               0.1);
   nh_local_ptr_->param<double>("obstacle_near_constant",
                                kparameter_obstacle_.near_constant, 0.35);
   nh_local_ptr_->param<double>("obstacle_near_factor",

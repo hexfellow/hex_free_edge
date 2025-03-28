@@ -38,9 +38,10 @@ This project is licensed under the terms of the Apache License 2.0 - see the [LI
 
 ### **Subscribe**
 
-| Topic          | Msg Type                  | Description        |
-| -------------- | ------------------------- | ------------------ |
-| `/point_cloud` | `sensor_msgs/PointCloud2` | Sensor point cloud |
+| Topic          | Msg Type                     | Description        |
+| -------------- | ---------------------------- | ------------------ |
+| `/point_cloud` | `sensor_msgs/PointCloud2`    | Sensor point cloud |
+| `/odom`        | `nav_msgs/Odometry`          | Odometry           |
 
 ### **Parameters**
 
@@ -107,34 +108,7 @@ This project is licensed under the terms of the Apache License 2.0 - see the [LI
 1. If you are using Livox LiDAR, you can run the following command:
 
    ```shell
-   terminal_1:
-   $ roslaunch hex_free_edge hex_livox.launch
-
-   terminal_2:
-   $ roscd hex_free_edge/tests/
-   $ rosbag play livox.bag --clock
-   ```
-
-2. If you are using RS-LiDAR, you can run the following command:
-
-   ```shell
-   terminal_1:
-   $ roslaunch hex_free_edge hex_lidar.launch
-
-   terminal_2:
-   $ roscd hex_free_edge/tests/
-   $ rosbag play lidar.bag --clock
-   ```
-
-3. If you are using depth camera, you can run the following command:
-
-   ```shell
-   terminal_1:
-   $ roslaunch hex_free_edge hex_depth.launch
-
-   terminal_2:
-   $ roscd hex_free_edge/tests/
-   $ rosbag play depth.bag --clock
+   roslaunch hex_free_edge hex_livox.launch
    ```
 
 ## **Notes**

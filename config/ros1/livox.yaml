@@ -12,8 +12,8 @@ flag_pub_cloud: true
 obstacle_cloud_num: 2
 obstacle_change_distance: 1.0
 obstacle_far_range: 0.08
-obstacle_far_gap: 0.0
-obstacle_near_constant: 0.1
+obstacle_far_gap: 0.10
+obstacle_near_constant: 0.10
 obstacle_near_factor: 0.05
 
 # sensor
